@@ -1,0 +1,12 @@
+<aspectj>
+
+    <aspects>
+        <!-- Aspects -->
+        <aspect name="com.example.aspectj.DateTimeToStringAspect"/>
+    </aspects>
+
+    <weaver options="-verbose -showWeaveInfo">
+        <include within="org.joda.time.base.AbstractDateTime"/>
+    </weaver>
+
+</aspectj>
