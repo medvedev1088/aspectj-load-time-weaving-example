@@ -13,7 +13,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <aspectj.version>1.8.13</aspectj.version>
+        <aspectj.version>1.9.9.1</aspectj.version>
+        <source.version>17</source.version>
+        <aspectjweaver.version>1.9.9.1</aspectjweaver.version>
+        <aspectj.maven.plugin.version>1.14.0</aspectj.maven.plugin.version>
+        <maven.compiler.plugn.version>2.5.1</maven.compiler.plugn.version>
     </properties>
 
     <build>
@@ -22,13 +26,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
-                <version>1.7</version>
+                <version>${aspectj.maven.plugin.version}</version>
                 <configuration>
                     <showWeaveInfo>true</showWeaveInfo>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${source.version}</source>
+                    <target>${source.version}</target>
                     <Xlint>ignore</Xlint>
-                    <complianceLevel>1.8</complianceLevel>
+                    <complianceLevel>${source.version}</complianceLevel>
                     <encoding>UTF-8</encoding>
                     <verbose>true</verbose>
                 </configuration>
@@ -55,10 +59,10 @@
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>${maven.compiler.plugn.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${source.version}</source>
+                    <target>${source.version}</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -71,7 +75,7 @@
                 <version>2.9</version>
                 <configuration>
                     <argLine>-XX:-UseSplitVerifier</argLine>
-                    <argLine>-javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar</argLine>
+                    <argLine>-Xmx1536M --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED -javaagent:${user.home}/.m2/repository/org/aspectj/aspectjweaver/${aspectjweaver.version}/aspectjweaver-${aspectjweaver.version}.jar</argLine>
                 </configuration>
             </plugin>
         </plugins>
